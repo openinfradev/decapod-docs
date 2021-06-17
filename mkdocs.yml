@@ -1,0 +1,22 @@
+site_name: Decapod - Decalarative Application Orchetration & Delivery
+repo_name: openinfradev/decapod-docs
+repo_url: https://github.com/openinfradev/decapod-docs
+theme:
+  language: kr
+  name: material
+  palette:
+    primary: green 
+plugins:
+  - search
+nav:
+  - Overview: index.md
+  - Concepts:
+    - concepts/index.md
+    - concepts/documentation.md
+    - concepts/deployment.md
+  - Getting started:
+    - getting-started/install.md
+    - getting-started/customize-yaml.md
+    - getting-started/deploying.md
+  - troubleshooting.md
+  - glossary.md
