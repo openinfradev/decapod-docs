@@ -8,6 +8,11 @@ theme:
     primary: green 
 plugins:
   - search
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.highlight
+  - pymdownx.superfences
 nav:
   - Overview: index.md
   - Concepts:

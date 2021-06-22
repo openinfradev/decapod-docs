@@ -1,6 +1,6 @@
 # Basics
-Decapod은 Kubernetes Cluster 환경을 기반으로 하며 Argo Workflow, Argo CD, Kustomize를 사용하고 있습니다.  
-Decapod을 사용하기 전, 각 프로젝트에 대한 기본적인 이해를 하면 Decapod에 대해 더 쉽게 이해할 수 있습니다.
+Decapod은 Kubernetes Cluster 환경을 기반으로 하며 Argo Workflow, Argo CD, Kustomize를 사용하고 있다.  
+Decapod을 사용하기 앞서, 각 프로젝트에 대한 기본적인 이해를 하면 Decapod에 대해 더 쉽게 이해할 수 있다.
 
 ## 알아보기
 ### Kubernetes
