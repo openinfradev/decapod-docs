@@ -3,7 +3,9 @@ Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD가 사용할 dec
 
 ## 사전 준비
 * [decapod-site](https://github.com/openinfradev/decapod-site)를 자신의 repo로 fork한다. 
-* [Fork 방법](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+  * [Fork 방법](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+* 렌더링된 decapod-manifest를 저장할 repository를 생성한다.
+  * E.g., github.com/<YOUR_REPOSITORY_NAME>/decapod-manifest.git
 
 ## 신규 사이트 생성
 
@@ -70,6 +72,15 @@ $ cd decapod-site
 $ .github/workflows/render-cd.sh <DECAPOD-BASE-BRANCH> <OUTPUT_DIR> <SITE_NAME>
 ```
 
+실제 배포를 위해서는 빌드된 최종 결과물을 미리 생성해놓은 'decapod-manifest' repository로 push해준다
+```
+$ cd <YOUR-DECAPOD-SITE-DIRECTORY>
+$ cd cd   # 'cd' is directory for output manifests
+$ mv ./* <YOUR-DECAPOD-MANIFEST_DIRECTORY>/
+$ cd <YOUR-DECAPOD-MANIFEST_DIRECTORY>
+$ git commit
+$ git push
+```
+
 ## 자동 빌드
-Decapod-site는 Github Action을 통해 빌드를 자동화하였다.
-Github Action은 [여기](https://github.com/openinfradev/decapod-site/blob/main/.github/workflows/merge_main.yml)를 참고할 수 있다.
+Decapod-site는 Github Action을 통해 빌드를 자동화하였다. Repository에 pull request가 생성되어 main branch에 merge되면, 렌더링된 결과물이 decapod-manifest repo로 자동으로 push 되며, 자세한 내용은 [여기](https://github.com/openinfradev/decapod-site/blob/main/.github/workflows/merge_main.yml)를 참고할 수 있다.
