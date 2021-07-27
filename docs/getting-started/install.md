@@ -7,15 +7,17 @@
 ## Decapod-bootstrap을 이용한 설치
 Decapod-bootstrap은 [app-of-apps 패턴](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/)을 사용하여 decapod component들을 bootstrap하기 위한 프로젝트이다.
 argo-cd를 설치하면서 최초의 meta app을 생성하며, 이 meta app이 실제 사용자 application을 설치해주는 구조로 되어있다.
-기본적으로 최소한의 동작을 위해 다음 컴포넌트들을 설치한다
+기본적으로 최소한의 동작을 위해 다음 컴포넌트들을 설치한다.
+
 * argo-cd
 * postgresql (argo-workflow가 사용하는 DB)
 * argo-workflow
 
 ### Fork & clone repository
 [Decapod-bootstrap](https://github.com/openinfradev/decapod-bootstrap)을 개인 repository로 fork한 후 clone한다
-
-        git clone https://github.com/{YOUR_REPO_NAME}/decapod-bootstrap
+```
+git clone https://github.com/{YOUR_REPO_NAME}/decapod-bootstrap
+```
 
 디렉토리 구조는 다음과 같이 되어있다
 ```
@@ -35,8 +37,8 @@ argo-cd를 설치하면서 최초의 meta app을 생성하며, 이 meta app이 �
 
 * argocd-install 디렉토리는 argo-cd에 bootstrap용 project 및 meta app을 생성하기 위한 argocd helm chart용 value-override file을 포함하고 있다.
 * helm chart를 수행하면 argocd에 최초로 decapod-bootstrap이라는 project를 만들고, 해당 프로젝트 아래 다음의 두 application을 생성한다.
-  * decapod-projects 는 실제 application용 project를 생성하기 위한 meta app으로서, 'decapod-projects'라는 디렉토리를 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd project를 생성한다.
-  * decapod-apps 는 실제 application을 생성하기 위한 meta app으로서, 'decapod-apps' app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감>지하여 argocd application을 생성한다. 
+    * decapod-projects 는 실제 application용 project를 생성하기 위한 meta app으로서, 'decapod-projects'라는 디렉토리를 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd project를 생성한다.
+    * decapod-apps 는 실제 application을 생성하기 위한 meta app으로서, 'decapod-apps' app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감>지하여 argocd application을 생성한다. 
 ```
   additionalApplications:
     - name: decapod-apps
