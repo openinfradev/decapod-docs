@@ -37,8 +37,8 @@ git clone https://github.com/{YOUR_REPO_NAME}/decapod-bootstrap
 
 * argocd-install 디렉토리는 argo-cd에 bootstrap용 project 및 meta app을 생성하기 위한 argocd helm chart용 value-override file을 포함하고 있다.
 * helm chart를 수행하면 argocd에 최초로 decapod-bootstrap이라는 project를 만들고, 해당 프로젝트 아래 다음의 두 application을 생성한다.
-    * decapod-projects 는 실제 application용 project를 생성하기 위한 meta app으로서, 'decapod-projects'라는 디렉토리를 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd project를 생성한다.
-    * decapod-apps 는 실제 application을 생성하기 위한 meta app으로서, 'decapod-apps' app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감>지하여 argocd application을 생성한다. 
+    * decapod-projects 는 실제 application용 project를 생성하기 위한 meta app으로서, `decapod-projects`라는 디렉토리를 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd project를 생성한다.
+    * decapod-apps 는 실제 application을 생성하기 위한 meta app으로서, `decapod-apps` app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감지하여 argocd application을 생성한다.
 ```
   additionalApplications:
     - name: decapod-apps
