@@ -32,12 +32,34 @@ argo-cd를 설치하면서 최초의 meta app을 생성하며, 이 meta app이 �
     ├── README.md
     └── decapod-controller.yaml
 ```
-각 디렉토리의 내용은 다음과 같다
-* argocd-install: argo-cd에 다음의 meta project 및 meta app을 생성하기 위한 argocd helm chart용 value-override file을 포함하고 있다.
-  * decapod-projects
-  * decapod-apps
-* decapod-projects: 실제 프로젝트 manifest 파일을 넣기 위한 디렉토리. 'decapod-projects' app에서 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd 프로젝트를 생성한다.
-* decapod-apps: 실제 application manifest 파일을 넣기 위한 디렉토리. 'decapod-apps' app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감지하여 argocd application을 생성한다.
+
+* argocd-install 디렉토리는 argo-cd에 bootstrap용 project 및 meta app을 생성하기 위한 argocd helm chart용 value-override file을 포함하고 있다.
+* helm chart를 수행하면 argocd에 최초로 decapod-bootstrap이라는 project를 만들고, 해당 프로젝트 아래 다음의 두 application을 생성한다.
+  * decapod-projects 는 실제 application용 project를 생성하기 위한 meta app으로서, 'decapod-projects'라는 디렉토리를 감시하고 있다가 project manifest 파일이 추가되면 이를 감지하여 argocd project를 생성한다.
+  * decapod-apps 는 실제 application을 생성하기 위한 meta app으로서, 'decapod-apps' app에서 감시하고 있다가 application manifest 파일이 추가되면 이를 감>지하여 argocd application을 생성한다. 
+```
+  additionalApplications:
+    - name: decapod-apps
+      namespace: argo
+      destination:
+        namespace: argo
+        server: https://kubernetes.default.svc
+      project: decapod-bootstrap
+      source:
+        path: decapod-apps
+        repoURL: https://github.com/openinfradev/decapod-bootstrap.git
+        targetRevision: HEAD
+        directory:
+          recurse: true
+          jsonnet: {}
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+```
+
+!!! note
+    위의 내용은 decapod-bootstrap 프로젝트의 코드이므로 실제 사용시에는 fork한 repository의 주소로 알맞게 치환해서 사용해야 한다!
 
 ### Namespace 생성
 다음의 두 namespace를 생성한다
@@ -53,7 +75,7 @@ argo-cd 차트와 위에서 준비해놓은 values-override 파일을 이용하�
 $ helm repo add argo https://argoproj.github.io/argo-helm
 $ helm install argo-cd argo/argo-cd --version 3.9.0 -f ./decapod-bootstrap/argocd-install/values-override.yaml -n argo
 ```
-Argo-cd가 설치되면, 우선 decapod-projects 및 decapod-apps application이 생성되며, 이 application들이 자신이 바라보고 있는 git repo 상의 디렉토리를 스캔하여 실제 application들을 순차적으로 설치하게 된다.
+Argo-cd가 설치되면, decapod-projects 및 decapod-apps application이 생성되며, 이 application들이 자신이 바라보고 있는 git repo 상의 디렉토리를 스캔하여 실제 application들을 순차적으로 설치하게 된다.
 
 ### 결과 확인
 ```
