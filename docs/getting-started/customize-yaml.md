@@ -1,11 +1,11 @@
 # Customizing
-Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD가 사용할 decapod-manifests를 생성한다.  
+Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD가 사용할 decapod-manifests를 생성한다.
 
 ## 사전 준비
 * [decapod-site](https://github.com/openinfradev/decapod-site)를 자신의 repo로 fork한다. 
     * [Fork 방법](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-* 렌더링된 decapod-manifest를 저장할 repository를 생성한다.
-    * E.g., "github.com/<YOUR_REPOSITORY_NAME>/decapod-manifest.git"
+* 렌더링된 [decapod-manifests](https://github.com/openinfradev/decapod-manifests)를 저장할 repository를 생성한다.
+    * 예: github.com/<YOUR_REPOSITORY_NAME\>/decapod-manifest.git
 
 ## 신규 사이트 생성
 

@@ -79,7 +79,9 @@ $ helm install argo-cd argo/argo-cd --version 3.9.0 -f ./decapod-bootstrap/argoc
 ```
 Argo-cd가 설치되면, decapod-projects 및 decapod-apps application이 생성되며, 이 application들이 자신이 바라보고 있는 git repo 상의 디렉토리를 스캔하여 실제 application들을 순차적으로 설치하게 된다.
 
-### 결과 확인
+## 결과 확인
+### pod 상태 확인
+아래와 같이 모든 pod 의 상태가 running 상태가 됨을 확인한다.
 ```
 $ kubectl get pods -n decapod-db
 NAME                      READY   STATUS    RESTARTS   AGE
@@ -95,3 +97,16 @@ argo-cd-argocd-server-6666cb7689-tswfr                         1/1     Running  
 argo-workflows-operator-server-d7df65b99-gpx5q                 0/1     Running            0          4m21s
 argo-workflows-operator-workflow-controller-598dfdd565-vrzg9   0/1     Running            0          4m21s
 ```
+
+### web UI 접속
+#### argo-cd
+모든 pod 이 Running 상태가 됨을 확인후, 아래 명령어를 통해 argo-cd password 를 확인한다.
+```
+$ kubectl -n argo get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+argo-cd nodeport(80)를 통하여 다음과 같이 web UI 에 접속할 수 있어야 한다.
+
+![argo-cd web console](../assets/argo-cd.png)
+
+
