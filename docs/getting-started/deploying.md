@@ -32,17 +32,16 @@ argo template create decapod-apps/service-mesh-wf.yaml
 
   argo submit -n argo --from wftmpl/prepare-argocd \
     -p argo_username="admin" \
-    -p argo_password="password" \
-    -p argo_server="argo-cd-argocd-server.argo.svc:80" \
+    -p argo_password="PASSWORD" # 위에서 확인된 패스워드를 입력한다. \
+    -p argo_server="argo-cd-argocd-server.argo.svc:80"
 
-  # 생성된 workflow가 완료될 때까지 기다린다.
-  argo ls -n argo 
+  argo list -n argo # 생성된 workflow가 완료될 때까지 기다린다.
   ```
 
 2. lma 배포
   ```sh
   argo submit -n argo --from wftmpl/lma-federation \
-    -p site_name="사이트명" # decapod-manifests의 사이트 디렉토리명과 일치해야한다. \
+    -p site_name="싸이트명" # decapod-manifests의 사이트 디렉토리명과 반드시 일치해야한다. \
     -p app_name="lma" \
     -p repository_url="https://github.com/openinfradev/decapod-manifests" # decapod-manifests repository 주소
 
