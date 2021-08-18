@@ -16,9 +16,7 @@ Steps to reproduce the behavior:
 **Screenshots or logs (optional)**
 If applicable, add screenshots to help explain your problem.
 
-**Server OS Information (please complete the following information):**
- - OS: 
- - Version:
+**Server Information (please complete the following information):**
 
 **Additional context**
 Add any other context about the problem here.
