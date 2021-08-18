@@ -1,7 +1,7 @@
 ---
 name: Development Story
 about: 'Create story to develop  '
-title: "[dev]"
+title: "[dev] "
 labels: ''
 assignees: ''
 
