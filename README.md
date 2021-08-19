@@ -1,5 +1,6 @@
 # decapod-docs
-Document for decapod projects
+Document for decapod projects: openinfradev.github.io/decapod-docs/
+
 
 ## 개발 환경
 ```
