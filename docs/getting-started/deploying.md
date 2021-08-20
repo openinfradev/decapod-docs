@@ -41,9 +41,9 @@ argo template create decapod-apps/service-mesh-wf.yaml
 2. lma 배포
   ```sh
   argo submit -n argo --from wftmpl/lma-federation \
-    -p site_name="YOUR_REPOSITORY_NAME" # decapod-manifests의 사이트 디렉토리명과 반드시 일치해야한다. \
+    -p site_name="사이트명" # decapod-manifests의 사이트 디렉토리명과 반드시 일치해야한다. \
     -p app_name="lma" \
-    -p repository_url="https://github.com/openinfradev/decapod-manifests" # decapod-manifests repository 주소
+    -p repository_url="https://github.com/{YOUR_REPO_NAME}/decapod-manifests" # decapod-manifests repository 주소
 
   argo list -n argo # 생성된 workflow가 완료될 때까지 기다린다.
   ```
