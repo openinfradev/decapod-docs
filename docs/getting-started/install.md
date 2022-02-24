@@ -75,7 +75,7 @@ argo-cd 차트와 위에서 준비해놓은 values-override 파일을 이용하�
 (chart location: https://artifacthub.io/packages/helm/argo/argo-cd)
 ```
 $ helm repo add argo https://argoproj.github.io/argo-helm
-$ helm install argo-cd argo/argo-cd --version 3.9.0 -f ./decapod-bootstrap/argocd-install/values-override.yaml -n argo
+$ helm install argo-cd argo/argo-cd --version 3.33.6 -f ./decapod-bootstrap/argocd-install/values-override.yaml -n argo
 ```
 Argo-cd가 설치되면, decapod-projects 및 decapod-apps application이 생성되며, 이 application들이 자신이 바라보고 있는 git repo 상의 디렉토리를 스캔하여 실제 application들을 순차적으로 설치하게 된다.
 
