@@ -58,7 +58,7 @@ github action을 통해 decapod-site main branch로 PR이 merge되면 자동으�
     │   ├── application이름
     │   │   ├── kustomization.yaml
     │   │   └── site-values.yaml
-    ├── hanu-reference
+    ├── decapod-reference
     │   ├── lma
     │   │   ├── kustomization.yaml
     │   │   └── site-values.yaml
@@ -67,7 +67,7 @@ github action을 통해 decapod-site main branch로 PR이 merge되면 자동으�
     │   │   └── site-values.yaml
     │   └── service-mesh
     │       ├── kustomization.yaml
-    └── hanu-reference-offline
+    └── decapod-reference-offline
         ├── lma
         │   ├── image-values.yaml
         │   ├── kustomization.yaml
@@ -77,8 +77,8 @@ github action을 통해 decapod-site main branch로 PR이 merge되면 자동으�
             ├── kustomization.yaml
             └── site-values.yaml
 
-최상단 디렉토리는 사이트(환경)으로 구분된다. 온라인 환경을 위한 sample site는 `hanu-reference` 이고,  
-오프라인 환경을 위한 sample site는 `hanu-reference-offline` 이다.  
+최상단 디렉토리는 사이트(환경)으로 구분된다. 온라인 환경을 위한 sample site는 `decapod-reference` 이고,
+오프라인 환경을 위한 sample site는 `decapod-reference-offline` 이다.
 
 ## decapod-manifests
 _[github link](https://github.com/openinfradev/decapod-manifests)_  
