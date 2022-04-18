@@ -4,15 +4,52 @@ repo_url: https://github.com/openinfradev/decapod-docs
 theme:
   language: kr
   name: material
-  palette:
-    primary: green 
+  palette: 
+   - scheme: default 
+     toggle:
+       icon: material/toggle-switch-off-outline
+       name: Switch to dark mode
+   - scheme: slate 
+     toggle:
+       icon: material/toggle-switch
+       name: Switch to light mode
+  features:
+    - navigation.indexes
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - toc.integrate       
+    - content.code.annotate
+    - content.tabs.link
+    - search.highlight
+    - search.share
+    - search.suggest
+  highlightjs: true
+
 plugins:
   - search
+
+extra_css:
+    - assets/css/extra.css
+
 markdown_extensions:
   - admonition
   - codehilite
+  - attr_list
+  - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.emoji
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
 nav:
   - Overview: index.md
   - Concepts:
