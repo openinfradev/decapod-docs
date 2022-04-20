@@ -6,9 +6,16 @@ Decapod은 Declarative Application Orchestration & Delivery의 약자로서, 다
 ![decapod-flow](assets/decapod-flow.svg)
 
 ## Features
-* LMA(Logging, Monitoring and Alarm), Service Mesh 등의 [App Group](glossary.md#app_group) 제공
+* LMA(Logging, Monitoring and Alarm), Service Mesh 등의 pre-defined [App Group](glossary.md#app_group) 제공
 * 사용자의 Kubernetes 환경에 따른 손쉬운 Yaml Customization 제공
-* Application간 Dependency에 따른 Deployment Pipeline 지원
+* Application간 Dependency를 고려한 순차적/단계적인 Deployment 지원
+
+## Use Cases
+SKT Container Platform에서는 Decapod를 기반으로 Cloud Infra Resource, Kubernetes Cluster 및 다양한 서비스들을 GitOps 형태로 배포하고 관리하고 있으며 실제로 다음과 같은 Use Case들에서 Decapod가 활용되고 있다.
+
+* Kubernetes Cluster를 다양한 클라우드 환경에 배포 및 관리
+* Prometheus, 다양한 Exporter들, Grafana, Loki, Promtail 등의 logging/monitoring tool들을 "LMA"라는 단일 App Group으로 구성하여 일괄 배포 및 관리
+* Istio, Jaeger, Kiali, Elastic Search, Service-mesh Portal 등을 "Service-Mesh"라는 단일 App Group으로 구성하여 일괄 배포 및 관리
 
 ## Projects
 * [decapod-flow](https://github.com/openinfradev/decapod-flow) - Argo WorkflowTemplate들의 저장소
