@@ -4,6 +4,7 @@ repo_url: https://github.com/openinfradev/decapod-docs
 theme:
   language: kr
   name: material
+  logo: assets/taco_icon.png
   palette: 
    - scheme: default 
      toggle:

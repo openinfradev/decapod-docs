@@ -1,5 +1,5 @@
-# Customizing
-Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD가 사용할 decapod-manifests를 생성한다.
+# Customizing configurations
+Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD app들에서 참조할 decapod-manifests를 생성한다.
 
 ## 사전 준비
 * [decapod-site](https://github.com/openinfradev/decapod-site)를 자신의 repo로 fork한다. 
@@ -23,9 +23,9 @@ Decapod-site를 배포할 환경에 맞게 수정하여 Argo CD가 사용할 dec
     $ ls <SITE_NAME>
     admin-tools   cloud-console lma           openstack     service-mesh
 
-## 커스터마이징
+## Configuration 수정
 !!! note
-    이 문서는 LMA를 커스터마이징하는 예시이다. service-mesh, openstack 등은 site-values.yaml 내용이 다르므로 각 site-values.yaml 파일 내용을 보고 수정해야한다.
+    이 문서는 LMA 관련 설정을 커스터마이즈하는 예시이다. service-mesh, openstack 등은 site-values.yaml 내용이 다르므로 각 site-values.yaml 파일 내용을 보고 수정해야한다.
 
 _decapod-site/<SITE_NAME\>/lma/site-values.yaml_:
 
@@ -59,28 +59,31 @@ global:
     prometheus.prometheusSpec.nodeSelector: $(nodeSelector)
 ```
 
-## 로컬 빌드
+## Local Build(rendering)
 !!! note 
-    로컬에서 빌드하기 위해서는 `docker` 가 설치되어 있는 환경이어야한다.  
-    로컬 빌드는 documentation 검증을 위한 절차로,  
-    로컬에서 빌드된 결과물이 decapod-manifests와 같은 github repository에 올라가지 않으면 배포할 수 없다.
+    로컬 환경에서 빌드하기 위해서는 `docker` 가 설치되어 있어야한다.  
+    로컬 빌드는 단순히 documentation 검증을 위한 절차이며,  
+    로컬에서 빌드된 결과물이 decapod-manifests와 같은 github repository에 push되어야 실제 배포가 가능하다.
 
 `decapod-site/.github/workflows/render-cd.sh` 파일을 사용하여 빌드한다.
 
 ```bash
 $ cd decapod-site
-$ .github/workflows/render-cd.sh <DECAPOD-BASE-BRANCH> <OUTPUT_DIR> <SITE_NAME>
+$ .github/workflows/render-cd.sh --base-url <DECAPOD-BASE-URL>
+
+# 특정 site에 대해서만 rendering할 경우
+$ .github/workflows/render-cd.sh --base-url <DECAPOD-BASE-URL> --site <YOUR-SITE-NAME>
 ```
 
 실제 배포를 위해서는 빌드된 최종 결과물을 미리 생성해놓은 'decapod-manifest' repository로 push해준다
 ```
 $ cd <YOUR-DECAPOD-SITE-DIRECTORY>
-$ cd cd   # 'cd' is directory for output manifests
+$ cd output   # 'output' is directory for output manifests
 $ mv ./* <YOUR-DECAPOD-MANIFEST_DIRECTORY>/
 $ cd <YOUR-DECAPOD-MANIFEST_DIRECTORY>
 $ git commit
 $ git push
 ```
 
-## 자동 빌드
+## 자동 Build
 Decapod-site는 Github Action을 통해 빌드를 자동화하였다. Repository에 pull request가 생성되어 main branch에 merge되면, 렌더링된 결과물이 decapod-manifest repo로 자동으로 push 되며, 자세한 내용은 [여기](https://github.com/openinfradev/decapod-site/blob/main/.github/workflows/merge_main.yml)를 참고할 수 있다.
